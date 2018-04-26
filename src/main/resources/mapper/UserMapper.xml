@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.springboot.mapper.UserMapper">
+	<resultMap id="BaseResultMap" type="com.springboot.model.User">
+		<id column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="password" property="password" />
+		<result column="phone" property="phone" />
+		<result column="create_time" property="createTime" />
+		<result column="description" property="description" />
+		<result column="birthday" property="birthday" />
+		<result column="sex" property="sex" />
+		<result column="source" property="source" />
+		<result column="photo" property="photo" />
+	</resultMap>
+	<resultMap id="userAttention" type="com.springboot.model.UserAttention">
+		<id column="id" property="id" />
+		<result column="user_id" property="userId" />
+		<result column="attention_id" property="attentionId" />
+		<result column="create_time" property="createTime" />
+	</resultMap>
+	<insert id="insertUserAttention" parameterType="com.springboot.model.UserAttention">
+		insert  into attention(user_id,attention_id,create_time) values(#{userId},#{attentionId},now())
+	</insert>
+	<delete id="deleteUserAttention" parameterType="com.springboot.model.UserAttention">
+		delete from attention where user_id=#{userId} and attention_id=#{attentionId}
+	</delete>
+	<select id="findUserAttention" parameterType="com.springboot.model.UserAttention" resultMap="userAttention">
+	select * from attention where user_id=#{userId} and attention_id=#{attentionId}
+	</select>
+	
+	<select id="getUserAttention" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select u.id,u.name,u.description,u.birthday,u.sex,u.photo from attention a join user u on
+		u.id=a.attention_id where
+		a.user_id=#{userId}
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap">
+		select
+		*
+		from user
+		where
+		password=#{password} and phone=#{phone}
+	</select>
+	
+	<update id="updateByPrimaryKey"  parameterType="com.springboot.model.User">
+		update user
+		<set>
+			<if test="name!=null">
+			name=#{name},
+			</if>
+			<if test="password!=null">
+			password=#{password},
+			</if>
+			<if test="description!=null">
+			description=#{description},
+			</if>
+			<if test="birthday!=null">
+			birthday=#{birthday},
+			</if>
+			<if test="sex!=null">
+			sex=#{sex},
+			</if>
+			<if test="photo!=null">
+			photo=#{photo},
+			</if>
+			<if test="source!=null">
+			source=#{source},
+			</if>
+		</set>
+		where  1=1 
+		<if test="id!=null">
+		and id=#{id}
+		</if>
+		<if test="phone!=null">
+		and phone=#{phone}
+		</if>
+	</update>
+	
+	<select id="selectByKey" resultMap="BaseResultMap">
+		select
+		 id,name,description,birthday,sex,photo
+		from user
+		where 1=1
+		<if test="phone!=null">
+			and phone=#{phone}
+		</if>
+		<if test="id!=null">
+			and id=#{id}
+		</if>
+		<if test="password!=null">
+		and password=#{password}
+		</if>
+	</select>
+	<insert id="insert" parameterType="com.springboot.model.User" useGeneratedKeys="true" keyProperty="id">
+		insert into user
+		(phone,password,create_time) values(#{phone}, #{password},now())
+	</insert>
+</mapper>
