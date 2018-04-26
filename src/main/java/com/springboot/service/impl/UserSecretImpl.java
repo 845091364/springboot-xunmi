@@ -25,6 +25,7 @@ public class UserSecretImpl implements UserSecretService {
 	private UserMapper userMapper;
 	@Autowired
 	private CommentSecretMapper commentSecretMapper;
+
 	@Transactional(propagation = Propagation.REQUIRED)
 	public HashMap<String, Object> addUserSecret(JSONObject param) {
 		HashMap<String, Object> map = new HashMap();
@@ -39,23 +40,15 @@ public class UserSecretImpl implements UserSecretService {
 	@Transactional(propagation = Propagation.REQUIRED)
 	public HashMap<String, Object> getUserSecret(JSONObject param) {
 		HashMap<String, Object> map = new HashMap();
-		OpenSecret openSecret;
-		UserSecret us;
-		OpenSecret os;
 		User user = new User();
-		while(true){
-			openSecret = new OpenSecret();
-			us = this.userSecretMapper.getUserSecret();
-			openSecret.setSecretId(us.getId());
-			openSecret.setUserId(Integer.valueOf(param.getInt("userId")));
-			os = this.userSecretMapper.getOpenSecret(openSecret);
-			if(os == null){
-				user.setId(us.getUserId());
-				this.userSecretMapper.insertOpenSecret(openSecret);
-				break;
-			}
-			continue;
-		}
+		OpenSecret openSecret = new OpenSecret();
+		openSecret.setUserId(param.getInt("userId"));
+		List<OpenSecret> os = this.userSecretMapper.getOpenSecret(openSecret);
+		UserSecret us = this.userSecretMapper.getUserSecret(os);
+		openSecret.setSecretId(us.getId());
+		openSecret.setUserId(Integer.valueOf(param.getInt("userId")));
+		user.setId(us.getUserId());
+		this.userSecretMapper.insertOpenSecret(openSecret);
 		UserAttention at = new UserAttention();
 		at.setAttentionId(us.getUserId());
 		at.setUserId(Integer.valueOf(param.getInt("userId")));

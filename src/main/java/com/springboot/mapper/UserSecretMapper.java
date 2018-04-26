@@ -12,9 +12,9 @@ public  interface UserSecretMapper
 {
   public  int insert(UserSecret paramUserSecret);
   
-  public  UserSecret getUserSecret();
+  public  UserSecret getUserSecret(List<OpenSecret> list);
   
-  public  OpenSecret getOpenSecret(OpenSecret paramOpenSecret);
+  public  List<OpenSecret> getOpenSecret(OpenSecret paramOpenSecret);
   
   public  void insertOpenSecret(OpenSecret paramOpenSecret);
   
