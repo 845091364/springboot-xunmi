@@ -25,4 +25,13 @@ public  interface UserMapper
   public  int deleteUserAttention(UserAttention paramUserAttention);
   
   public  UserAttention findUserAttention(UserAttention paramUserAttention);
+  
+  public  int updateAttentionCount(Integer userId);
+  
+  public  int updatePublishCount(Integer userId);
+  
+  public  int updateOpenCount(Integer userId);
+  
+  public  int updateAttentionCountCut(Integer userId);
+  
 }

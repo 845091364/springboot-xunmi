@@ -33,6 +33,7 @@ public class UserSecretImpl implements UserSecretService {
 		record.setContent(param.getString("content"));
 		record.setUserId(Integer.valueOf(param.getInt("userId")));
 		this.userSecretMapper.insert(record);
+		this.userMapper.updatePublishCount(param.getInt("userId"));
 		map.put("success", 1);
 		return map;
 	}
@@ -52,6 +53,7 @@ public class UserSecretImpl implements UserSecretService {
 		UserAttention at = new UserAttention();
 		at.setAttentionId(us.getUserId());
 		at.setUserId(Integer.valueOf(param.getInt("userId")));
+		this.userMapper.updateOpenCount(param.getInt("userId"));
 		map.put("attention", Integer.valueOf(this.userMapper.findUserAttention(at) == null ? 0 : 1));
 		map.put("user", this.userMapper.selectByKey(user));
 		map.put("data", us);

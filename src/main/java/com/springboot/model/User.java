@@ -15,7 +15,37 @@ public class User
   private String birthday;
   private Integer sex;
   
-  public String getPhoto()
+  private Integer  attentionCount;
+  
+  private Integer openCount;
+  
+  private Integer publishCount;
+  
+  public Integer getAttentionCount() {
+	return attentionCount;
+}
+
+public void setAttentionCount(Integer attentionCount) {
+	this.attentionCount = attentionCount;
+}
+
+public Integer getOpenCount() {
+	return openCount;
+}
+
+public void setOpenCount(Integer openCount) {
+	this.openCount = openCount;
+}
+
+public Integer getPublishCount() {
+	return publishCount;
+}
+
+public void setPublishCount(Integer publishCount) {
+	this.publishCount = publishCount;
+}
+
+public String getPhoto()
   {
     return this.photo;
   }

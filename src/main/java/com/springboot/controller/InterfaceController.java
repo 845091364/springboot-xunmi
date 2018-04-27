@@ -60,7 +60,7 @@ public class InterfaceController
         case 106: //获取问题
           datalist.put("data", this.userSecretService.getQuestions());
           break;
-        case 107: //休息个人信息
+        case 107: //修改个人信息
           datalist.put("data", this.userService.updateUser(param));
           break;
         case 108: //修改密码
@@ -81,6 +81,13 @@ public class InterfaceController
         case 113: //获取评论列表
             datalist.put("data", this.commentSecretService.getComment(param));
             break;
+        case 114: //获取打开的盒子
+            datalist.put("data", this.commentSecretService.getComment(param));
+            break;
+        case 115: //获取已经发布的盒子
+            datalist.put("data", this.commentSecretService.getComment(param));
+            break;
+            
         }
       } else{
         datalist.put("msg", "数据错误");

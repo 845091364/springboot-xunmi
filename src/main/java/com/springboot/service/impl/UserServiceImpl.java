@@ -157,9 +157,11 @@ public class UserServiceImpl implements UserService {
 		at.setUserId(Integer.valueOf(param.getInt("userId")));
 		if (param.getInt("type") == 1) {
 			this.userMapper.insertUserAttention(at);
+			this.userMapper.updateAttentionCount(param.getInt("userId"));
 		}
 		if (param.getInt("type") == 2) {
 			this.userMapper.deleteUserAttention(at);
+			this.userMapper.updateAttentionCountCut(param.getInt("userId"));
 		}
 		map.put("success", 1);
 		return map;
