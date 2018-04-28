@@ -18,7 +18,7 @@ public  interface UserMapper
   
   public  List<User> getUsers();
   
-  public  List<User> getUserAttention(String paramString);
+  public  List<User> getUserAttention(String userId);
   
   public  int insertUserAttention(UserAttention paramUserAttention);
   
@@ -33,5 +33,6 @@ public  interface UserMapper
   public  int updateOpenCount(Integer userId);
   
   public  int updateAttentionCountCut(Integer userId);
+  
   
 }

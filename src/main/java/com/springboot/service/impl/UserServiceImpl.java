@@ -115,6 +115,9 @@ public class UserServiceImpl implements UserService {
 		if (param.containsKey("birthday")) {
 			user.setBirthday(param.getString("birthday"));
 		}
+		if (param.containsKey("photo")) {
+			user.setPhoto(param.getString("photo"));
+		}
 		this.userMapper.updateByPrimaryKey(user);
 		map.put("success", 1);
 		return map;
@@ -173,6 +176,16 @@ public class UserServiceImpl implements UserService {
 		at.setAttentionId(Integer.valueOf(param.getInt("attentionId")));
 		at.setUserId(Integer.valueOf(param.getInt("userId")));
 		map.put("user", this.userMapper.findUserAttention(at));
+		map.put("success", 1);
+		return map;
+	}
+
+	@Override
+	public HashMap<String, Object> finUserById(JSONObject paramJSONObject) {
+		HashMap<String, Object> map = new HashMap();
+		User user = new User();
+		user.setId(paramJSONObject.getInt("userId"));
+		map.put("user", this.userMapper.selectByKey(user));
 		map.put("success", 1);
 		return map;
 	}

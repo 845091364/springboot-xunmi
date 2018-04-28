@@ -82,12 +82,20 @@ public class InterfaceController
             datalist.put("data", this.commentSecretService.getComment(param));
             break;
         case 114: //获取打开的盒子
-            datalist.put("data", this.commentSecretService.getComment(param));
+            datalist.put("data", this.userSecretService.getOpenSecretAll(param));
             break;
         case 115: //获取已经发布的盒子
-            datalist.put("data", this.commentSecretService.getComment(param));
+            datalist.put("data", this.userSecretService.getPublish(param));
             break;
-            
+        case 116: //根据盒子id查找详情
+            datalist.put("data", this.userSecretService.getBySecretId(param));
+            break;
+        case 117: //删除盒子秘密
+            datalist.put("data", this.userSecretService.deleteBySecretId(param));
+            break;
+        case 118: //根据用户id查找用户详情
+            datalist.put("data", this.userService.finUserById(param));
+            break;
         }
       } else{
         datalist.put("msg", "数据错误");

@@ -75,7 +75,44 @@ public class UserSecretImpl implements UserSecretService {
 	@Override
 	public HashMap<String, Object> getTop(JSONObject param) {
 		HashMap<String, Object> map = new HashMap();
-		map.put("data", userSecretMapper.getTop());
+		map.put("data", userSecretMapper.getTop(param.getInt("type")));
+		map.put("success", 1);
+		return map;
+	}
+
+	@Override
+	public HashMap<String, Object> getPublish(JSONObject param) {
+		HashMap<String, Object> map = new HashMap();
+		map.put("data", userSecretMapper.getPublish(param.getInt("userId")));
+		map.put("success", 1);
+		return map;
+	}
+
+	@Override
+	public HashMap<String, Object> getOpenSecretAll(JSONObject param) {
+		HashMap<String, Object> map = new HashMap();
+		map.put("data", userSecretMapper.getOpenSecretAll(param.getInt("userId")));
+		map.put("success", 1);
+		return map;
+	}
+
+	@Override
+	public HashMap<String, Object> getBySecretId(JSONObject param) {
+		HashMap<String, Object> map = new HashMap();
+		User user = new User();
+		UserSecret us = this.userSecretMapper.getBySecretId(param.getInt("secretId"));
+		user.setId(us.getUserId());
+		map.put("user", this.userMapper.selectByKey(user));
+		map.put("data", us);
+		map.put("success", 1);
+		return map;
+	}
+
+	@Override
+	public HashMap<String, Object> deleteBySecretId(JSONObject param) {
+		HashMap<String, Object> map = new HashMap();
+		userSecretMapper.deleteBySecretId(param.getInt("secretId"));
+		userSecretMapper.deleteByOpenSecret(param.getInt("secretId"));
 		map.put("success", 1);
 		return map;
 	}

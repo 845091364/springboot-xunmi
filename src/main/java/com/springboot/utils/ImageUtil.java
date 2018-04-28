@@ -287,14 +287,17 @@ public class ImageUtil {
 				result.put("url", path);
 				result.put("code", Integer.valueOf(200));
 				result.put("msg", "上传成功");
+				result.put("success",1);
 			} else {
 				result.put("code", Integer.valueOf(-200));
 				result.put("msg", "上传失败");
+				result.put("success",0);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			result.put("code", Integer.valueOf(-200));
 			result.put("msg", "上传失败");
+			result.put("success",0);
 		}
 		return result;
 	}

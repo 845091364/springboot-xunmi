@@ -11,4 +11,13 @@ public interface UserSecretService {
 	public HashMap<String, Object> getQuestions();
 	
 	public  HashMap<String, Object> getTop(JSONObject param);
+	
+	public  HashMap<String, Object> getPublish(JSONObject param);
+	
+	public  HashMap<String, Object> getOpenSecretAll(JSONObject param);
+	
+	public  HashMap<String, Object> getBySecretId(JSONObject param);
+	
+	public  HashMap<String, Object> deleteBySecretId(JSONObject param);
+	
 }

@@ -27,4 +27,7 @@ public interface UserService {
 	public HashMap<String, Object> findAttention(JSONObject paramJSONObject);
 
 	public HashMap<String, Object> addAttention(JSONObject paramJSONObject);
+	
+	public HashMap<String, Object> finUserById(JSONObject paramJSONObject);
+	
 }

@@ -88,7 +88,7 @@
 
 	<select id="selectByKey" resultMap="BaseResultMap">
 		select
-		id,name,description,birthday,sex,photo
+		id,name,description,birthday,sex,photo,attention_count,open_count,publish_count
 		from user
 		where 1=1
 		<if test="phone!=null">
