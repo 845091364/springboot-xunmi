@@ -160,7 +160,7 @@ public class AES256Encrypt {
 		//String str = "{\"aid\":\"a47ba7b1-24aa-11e6-946c-086266346e42\"}";
 		 String str =
 		// "{\"serviceType\":\"0\",\"houseKeeperId\":\"201709051108\",\"status\":\"0\",\"startPage\":\"0\",\"pageSize\":\"100\",\"orderType\":\"5\"}";
-				 "{\"type\":\"1\"}";		 
+				 "{\"pageNumber\":\"0\",\"pageSize\":\"10\"}";		 
 				 
 		System.out.println("原文：" + str);
 		try {

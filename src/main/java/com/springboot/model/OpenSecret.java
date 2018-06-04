@@ -8,8 +8,16 @@ public class OpenSecret
   private Integer secretId;
   private Integer userId;
   private Date createTime;
-  
-  public Integer getId()
+  private Integer picId;
+  public Integer getPicId() {
+	return picId;
+}
+
+public void setPicId(Integer picId) {
+	this.picId = picId;
+}
+
+public Integer getId()
   {
     return this.id;
   }

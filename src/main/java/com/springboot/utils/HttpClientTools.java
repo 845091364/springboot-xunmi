@@ -196,8 +196,8 @@ public class HttpClientTools {
 			Map<String, NameValuePair> nameValuePairMap = new HashMap<String, NameValuePair>();
 			NameValuePair data = new NameValuePair(
 					"data",
-					"aa006a4746ee9368f48ef597fcca2e77");
-			NameValuePair query = new NameValuePair("queryid", "112");  
+					"2f0a53817717b54b75da8744d53c9bb76c15bddf88eff126dc733c514d7ccc8ba76fd43b1e06209cefd01dd6f32a3968");
+			NameValuePair query = new NameValuePair("queryid", "105");  
 			nameValuePairMap.put("queryid", query);
 			nameValuePairMap.put("data", data);
 			logger.info(HttpClientTools.postHttp( "http://localhost:8080/interface", nameValuePairMap));

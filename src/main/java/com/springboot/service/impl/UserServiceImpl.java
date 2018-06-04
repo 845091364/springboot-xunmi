@@ -93,7 +93,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	public HashMap<String, Object> getAttention(JSONObject param) {
-		HashMap<String, Object> map = new HashMap();
+		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("data", this.userMapper.getUserAttention(param.getString("userId")));
 		map.put("success", 1);
 		return map;
