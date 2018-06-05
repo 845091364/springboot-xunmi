@@ -5,8 +5,13 @@
 		<id column="id" property="id" />
 		<result column="pic" property="pic" />
 		<result column="old_pic" property="oldPic" />
+		<result column="create_time" property="createTime" />
 	</resultMap>
 	<select id="selectPicByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
 		select p.pic,p.old_pic from open_secret os  join pic  p  on p.id!=os.pic_id where os.user_id=#{userId} limit 0,1
+	</select>
+	<select id="picList" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+	
+	select * from  pic limit #{pageNumber},#{pageSize}
 	</select>
 </mapper>

@@ -1,11 +1,13 @@
 package com.springboot.service.impl;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.springboot.mapper.PicMapper;
+import com.springboot.model.Pic;
 import com.springboot.service.PicService;
 
 import net.sf.json.JSONObject;
@@ -20,6 +22,11 @@ public class PicServiceImpl implements PicService{
 		map.put("code",200);
 		map.put("data", picMapper.selectPicByUserId(param.getInt("userId")));
 		return map;
+	}
+	@Override
+	public List<Pic> picList(Integer pageNumber, Integer pageSize) {
+		
+		return picMapper.picList(pageNumber, pageSize);
 	}
 
 }

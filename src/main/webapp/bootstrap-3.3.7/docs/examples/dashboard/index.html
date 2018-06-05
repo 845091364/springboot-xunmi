@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/bootstrap-3.3.7/favicon.ico">
+
+    <title>Dashboard Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/bootstrap-3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="/bootstrap-3.3.7/docs/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/bootstrap-3.3.7/docs/examples/dashboard/dashboard.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="/bootstrap-3.3.7/docs/assets/js/ie-emulation-modes-warning.js"></script>
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">寻秘</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">退出</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li class="active"><a href="">用户列表</a></li>
+            <li ><a href="">秘密列表</a></li>
+            <li><a href="">图片列表</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h2 class="sub-header" id="title">数据</h2>
+          <div class="table-responsive">
+            <table class="table table-striped" id="content">
+              <thead>
+                <tr>
+                  <th>编号</th>
+                  <th>用户名</th>
+                  <th>性别</th>
+                  <th>年龄</th>
+                  <th>注册日期</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1,001</td>
+                  <td>Lorem</td>
+                  <td>女</td>
+                  <td>2033</td>
+                  <td>2018-06-04</td>
+                </tr>
+              </tbody>
+            </table>
+  <nav aria-label="Page navigation" style="text-align: right;">
+  <ul class="pagination">
+    <li>
+      <a href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+    <li>
+      <a href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="/bootstrap-3.3.7/docs/assets/js/vendor/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="/bootstrap-3.3.7/docs/dist/js/bootstrap.min.js"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="/bootstrap-3.3.7/docs/assets/js/vendor/holder.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+     <script type="text/javascript">
+	$(function(){
+			users();
+			 $('ul.nav > li').click(function (e) {
+				 e.preventDefault();
+				 $('ul.nav > li').removeClass('active');
+				 $(this).addClass('active');
+				 if($(this).text()=="用户列表"){
+					 $(".btn-group").remove();
+					 users();
+				 }
+				 if($(this).text()=="秘密列表"){
+					 $(".btn-group").remove();
+					 secret();
+				 }
+				 if($(this).text()=="图片列表"){
+					 $("#title").append("<div class='btn-group' role='group' style='float:right;' aria-label='...'>"+
+                     "<button type='button' class='btn btn-success'>图片上传</button>"+
+                     "</div>")
+					 pic();
+				 }
+		 })
+	})
+	function  users(){
+		var htmlBody="<thead>"+
+   	   "<tr>"+
+       " <th>编号</th>"+
+       "<th>用户名称</th>"+
+       "<th>注册日期</th>"+
+    	 "</tr></thead>";
+  		htmlBody+=
+         		"<tbody>"+
+         		" <tr>"+
+              " <td>1</td>"+
+              " <td>萨克斯</td>"+
+              " <td>2018-06-09</td>"+
+              " </tr>"+
+         "</tbody>"
+  	$("#content").html(htmlBody);
+	}
+	function  secret(){
+		var htmlBody="<thead>"+
+    	 "<tr>"+
+        " <th>编号</th>"+
+        "<th>秘密名称</th>"+
+        "<th>发布人</th>"+
+        "<th>发布日期</th>"+
+     	 "</tr></thead>";
+   		htmlBody+=
+          		"<tbody>"+
+          		" <tr>"+
+               " <td>111</td>"+
+               " <td>小秘密</td>"+
+               " <td>333</td>"+
+               " <td>444</td>"+
+               " </tr>"+
+          "</tbody>"
+   	$("#content").html(htmlBody);
+	}
+	function  pic(){
+			$.ajax({  
+		        type: 'GET',  
+		        url: 'pic',  
+		        data: {},  
+		        beforeSend: function (XMLHttpRequest) {  
+		        },  
+		        success: function (data, status) {
+		        	var htmlBody="<thead>"+
+                 	 "<tr>"+
+                     " <th>编号</th>"+
+                     "<th>原图</th>"+
+                     "<th>问题图</th>"+
+                     "<th>上传日期</th>"+
+                  	 "</tr>"+
+                     "</thead>";
+		        	for(i=0;i<data.length;i++){
+		        		htmlBody+=
+	                   		"<tbody>"+
+	                   		" <tr>"+
+	                        " <td>"+data[i].id+"</td>"+
+	                        " <td>"+data[i].pic+"</td>"+
+	                        " <td>"+data[i].oldPic+"</td>"+
+	                        " <td>"+dateFormat_2(data[i].createTime)+"</td>"+
+	                        " </tr>"+
+	                   "</tbody>"
+		        	}
+		        	$("#content").html(htmlBody);
+		        },  
+		        complete: function (XMLHttpRequest, textStatus) { 
+		        },  
+		        error: function () {  
+		        }  
+		    });  
+	}
+	function dateFormat_1(longTypeDate){ 
+		  var dateType = ""; 
+		  var date = new Date(); 
+		  date.setTime(longTypeDate); 
+		  dateType += date.getFullYear();  //年 
+		  dateType += "-" + getMonth(date); //月  
+		  dateType += "-" + getDay(date);  //日 
+		  return dateType;
+		} 
+		//返回 01-12 的月份值  
+		function getMonth(date){ 
+		  var month = ""; 
+		  month = date.getMonth() + 1; //getMonth()得到的月份是0-11 
+		  if(month<10){ 
+		    month = "0" + month; 
+		  } 
+		  return month; 
+		} 
+		//返回01-30的日期 
+		function getDay(date){ 
+		  var day = ""; 
+		  day = date.getDate(); 
+		  if(day<10){ 
+		    day = "0" + day; 
+		  } 
+		  return day; 
+		}
+		function dateFormat_2(longTypeDate){ 
+			  var dateType = ""; 
+			  var date = new Date(); 
+			  date.setTime(longTypeDate); 
+			  dateType = date.getFullYear()+"-"+getMonth(date)+"-"+getDay(date);//yyyy-MM-dd格式日期
+			  return dateType;
+			}
+	</script>
+  </body>
+</html>
