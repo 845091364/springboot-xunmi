@@ -11,4 +11,6 @@ public interface PicMapper {
 	  public  Pic selectPicByUserId(Integer userId);
 	  
 	  public List<Pic> picList(@Param("pageNumber")Integer pageNumber, @Param("pageSize")Integer pageSize);
+	  
+	  public  void savePic(Pic pic);
 }

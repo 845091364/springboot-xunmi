@@ -28,5 +28,9 @@ public class PicServiceImpl implements PicService{
 		
 		return picMapper.picList(pageNumber, pageSize);
 	}
+	@Override
+	public void savePic(Pic pic) {
+		picMapper.savePic(pic);
+	}
 
 }

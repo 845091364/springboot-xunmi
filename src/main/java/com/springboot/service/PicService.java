@@ -11,4 +11,6 @@ public interface PicService {
 	public  HashMap<String, Object> selectPicByUserId(JSONObject param);
 	
 	List<Pic> picList(Integer pageNumber,Integer pageSize);
+	
+	public void   savePic(Pic pic);
 }

@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="/bootstrap-3.3.7/favicon.ico">
 
-    <title>Dashboard Template for Bootstrap</title>
+    <title>寻秘</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/bootstrap-3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -78,36 +78,65 @@
                 </tr>
               </tbody>
             </table>
-  <nav aria-label="Page navigation" style="text-align: right;">
-  <ul class="pagination">
-    <li>
-      <a href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <li><a href="#">1</a></li>
-    <li><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-    <li><a href="#">4</a></li>
-    <li><a href="#">5</a></li>
-    <li>
-      <a href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
-</nav>
+			  <nav aria-label="Page navigation" style="text-align: right;">
+			  <ul class="pagination">
+			    <li>
+			      <a href="#" aria-label="Previous">
+			        <span aria-hidden="true">&laquo;</span>
+			      </a>
+			    </li>
+			    <li><a href="#">1</a></li>
+			    <li><a href="#">2</a></li>
+			    <li><a href="#">3</a></li>
+			    <li><a href="#">4</a></li>
+			    <li><a href="#">5</a></li>
+			    <li>
+			      <a href="#" aria-label="Next">
+			        <span aria-hidden="true">&raquo;</span>
+			      </a>
+			    </li>
+			  </ul>
+			</nav>
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+				<div class="modal-content">
+				<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+				×
+				</button>
+				<h4 class="modal-title" id="myModalLabel">
+				上传图片
+				</h4>
+				</div>
+				<div class="modal-body">
+				<div class='file-loading'> 
+	    				    <input id='input-fcount-1' name='input-fcount-1[]' multiple type='file' class='file' accept='image/*'>
+				</div>
+			</div>
+			<div class="modal-footer">
+			<button type="button" class="btn btn-default" id="ccc" data-dismiss="modal" onclick="picAdd()">保存</button>
+			</div>
+			</div>
+			</div>
+			</div>
+			<!-- 隐藏域 -->
+			<span style="display:none;" id='yc'></span>
           </div>
         </div>
       </div>
     </div>
     <script src="/bootstrap-3.3.7/docs/assets/js/vendor/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="/bootstrap-3.3.7/docs/dist/js/bootstrap.min.js"></script>
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
     <script src="/bootstrap-3.3.7/docs/assets/js/vendor/holder.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-     <script type="text/javascript">
+    
+    <!-- bootstrap 4.x is supported. You can also use the bootstrap css 3.3.x versions -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.5/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.5/js/fileinput.min.js"></script>
+	<script src="/bootstrap-3.3.7/docs/dist/js/zh.js"></script>
+	<script src="/bootstrap-3.3.7/docs/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
 	$(function(){
 			users();
 			 $('ul.nav > li').click(function (e) {
@@ -123,9 +152,11 @@
 					 secret();
 				 }
 				 if($(this).text()=="图片列表"){
+					 $(".btn-group").remove();
+					 $('#yc').text("");
 					 $("#title").append("<div class='btn-group' role='group' style='float:right;' aria-label='...'>"+
-                     "<button type='button' class='btn btn-success'>图片上传</button>"+
-                     "</div>")
+	                    "<button data-toggle='modal' data-target='#myModal' class='btn btn-success'>图片上传</button>"+
+	                     "</div>")
 					 pic();
 				 }
 		 })
@@ -169,7 +200,7 @@
 	function  pic(){
 			$.ajax({  
 		        type: 'GET',  
-		        url: 'pic',  
+		        url: 'xunmi/pic', 
 		        data: {},  
 		        beforeSend: function (XMLHttpRequest) {  
 		        },  
@@ -235,6 +266,47 @@
 			  dateType = date.getFullYear()+"-"+getMonth(date)+"-"+getDay(date);//yyyy-MM-dd格式日期
 			  return dateType;
 			}
+		$("#input-fcount-1").fileinput({
+				language: 'zh',
+			    uploadUrl: "xunmi/fileUpload",
+	            showRemove:true,  
+			    maxFileCount: 2,
+			    autoReplace:true,
+			    validateInitialCount: true,
+			    uploadsync:false,
+			    maxFileSize:0,
+			    //overwriteInitial: false,
+			    /* initialPreview: [
+			    ],
+			    initialPreviewConfig: [
+			        
+			    ], */
+			    allowedFileExtensions: ["jpg", "png", "gif"],
+			 }).on("fileuploaded", function (event, data, previewId, index){
+				$('#yc').text(data.response.url+","+$('#yc').text())
+				
+			 });
+		//清除图片
+		$('#input-fcount-1').on('fileclear', function(event) {
+			$('#yc').text("");
+		}); 
+	//保存图片路径
+	function  picAdd(){
+			var param={pic:$("#yc").text()};
+			$.ajax({  
+		        type: 'POST',  
+		        url: 'xunmi/picAdd',  
+		        data: param,  
+		        beforeSend: function (XMLHttpRequest) {  
+		        },  
+		        success: function (data, status) {
+		        },  
+		        complete: function (XMLHttpRequest, textStatus) { 
+		        },  
+		        error: function () {  
+		        }  
+		    });
+	}
 	</script>
   </body>
 </html>

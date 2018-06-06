@@ -14,4 +14,7 @@
 	
 	select * from  pic limit #{pageNumber},#{pageSize}
 	</select>
+	<insert id="savePic" parameterType="com.springboot.model.Pic">
+	insert into pic(pic,old_pic,create_time) values(#{pic},#{oldPic},now())
+	</insert>
 </mapper>
